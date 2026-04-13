@@ -89,7 +89,7 @@ export default function App() {
   // ── Auth / connection state ────────────────────────────────────────────────
   const [joined,    setJoined]    = useState(false)
   const [me,        setMe]        = useState<UserInfo | null>(null)
-  const [myKey, setMyKey] = useState('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')
+  const [myKey, setMyKey] = useState('')
   const [connected, setConnected] = useState(false)
 
   // ── Editor / file state ────────────────────────────────────────────────────
