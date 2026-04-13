@@ -61,9 +61,9 @@ function Splash({ onJoin }: { onJoin: (u: UserInfo, key: string) => void }) {
         <div style={{ fontSize:10, color:'#3a4050', marginBottom:10, letterSpacing:1, textTransform:'uppercase' }}>Quick Join</div>
         <div className="sp-grid">
           {[
-            { id:'alex',   name:'Adarsh',   role:'Frontend',   color:'#0078d4', initial:'A' },
-            { id:'sarah',  name:'Akhil',  role:'Backend',    color:'#4ec9b0', initial:'S' },
-            { id:'jordan', name:'Hima', role:'Full Stack', color:'#dcdcaa', initial:'J' },
+            { id:'alex',   name:'Alex',   role:'Frontend',   color:'#0078d4', initial:'A' },
+            { id:'sarah',  name:'Sarah',  role:'Backend',    color:'#4ec9b0', initial:'S' },
+            { id:'jordan', name:'Jordan', role:'Full Stack', color:'#dcdcaa', initial:'J' },
           ].map(u => (
             <div key={u.id} className="sp-card" style={{ '--cc': u.color } as React.CSSProperties}
               onClick={() => doJoin(u.id, u.name, u.role, u.color, u.initial)}>
@@ -89,7 +89,7 @@ export default function App() {
   // ── Auth / connection state ────────────────────────────────────────────────
   const [joined,    setJoined]    = useState(false)
   const [me,        setMe]        = useState<UserInfo | null>(null)
-  const [myKey,     setMyKey]     = useState('')
+  const [myKey, setMyKey] = useState('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')
   const [connected, setConnected] = useState(false)
 
   // ── Editor / file state ────────────────────────────────────────────────────
@@ -483,9 +483,14 @@ export default function App() {
       return
     }
     try {
+      // Pass the frozen base content so the AI can perform a true 3-way merge
       const r = await fetch('/api/ai/resolve', {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ conflict: c, apiKey: myKey }),
+        body: JSON.stringify({
+          conflict: c,
+          apiKey:   myKey,
+          baseCode: filesRef.current[c.filename] ?? '',
+        }),
       })
       const d = await r.json()
       if (d.error) throw new Error(d.error)
@@ -501,7 +506,7 @@ export default function App() {
   // ── Merge modal open ───────────────────────────────────────────────────────
   const openMergeModal = useCallback((id: string) => {
     setMergeModal(id)
-    if (!aiResults[id]) aiResolve(id)
+      aiResolve(id)
   }, [aiResults, aiResolve])
 
   // ── Accept merge ───────────────────────────────────────────────────────────

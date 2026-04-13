@@ -79,6 +79,8 @@ public record ResolveRequest
 {
     public ConflictInfo? Conflict { get; init; }
     public string?       ApiKey   { get; init; }
+    /// <summary>The original file content before either developer made edits (the merge base).</summary>
+    public string?       BaseCode { get; init; }
 }
 
 public record ResolveResponse

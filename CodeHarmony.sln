@@ -25,11 +25,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "codeharmony.client", "codeh
 		SlnRelativePath = "codeharmony.client\"
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CED84EF5-A492-43E6-97A4-B6B939F24BAB}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +44,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1B920D67-C4B7-483E-AAFA-8938BF43C456}
+		SolutionGuid = {BB158956-C5B5-4FFE-A327-5CA6B254B482}
 	EndGlobalSection
 EndGlobal
